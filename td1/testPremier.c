@@ -4,11 +4,12 @@
 
 int test_premier(int N)
 {
-	float i;
-	While(i < sqrt(N))
+	int i;
+	i = 2;
+	while(i < N)
 	{
 		
-		if(floor(N/i) == N/i)
+		if(N%i == 0)
 		{
 			return 0;
 		}
@@ -21,15 +22,17 @@ int main()
 {
 	int test,res;
 	
+	scanf("%d",&test);
+	
 	res = test_premier(test);
 	
 	if(res)
 	{
-		printf("%d est premier",test);
+		printf("%d est premier\n",test);
 	}
 	else
 	{
-		printf("%d n'est pas premier premier",test);
+		printf("%d n'est pas premier premier\n",test);
 	}
 	
 	return 0;
