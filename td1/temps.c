@@ -12,20 +12,76 @@ void division_s(int *s, int * m,int *h)
 
 int main()
 {
-	int s,m,h;
+	int s,m,h,Save_s;
 	m = h = 0;
 	
-	s = 0;
+	scanf("%d", &s);
+	
+	Save_s = s;
 	
 	if(s == 0 || s == 1) // si il y a 1 ou 0 sec on print directement sans calcule pour avoir 
 	{					 // seconde au singulier
-		printf("\n %d seconde corespond a %d heure %d minute %d seconde \n",s,h,m,s);
+		printf("\n %d seconde corespond a %d heure %d minute %d seconde \n",Save_s,h,m,s);
+	}
+	else if(s < 60) 
+	{	
+		printf("\n %d secondes corespond a %d heure %d minute %d secondes \n",Save_s,h,m,s);
 	}
 	else
 	{
 		division_s(&s,&m,&h);
-	
-		printf("%d secondes ",s);
+		
+		if(h == 0 || h == 1)
+		{
+			if(m == 0 || m == 1)
+			{
+				if(s == 0 || m == 1)
+				{
+					printf("\n %d secondes corespond a %d heure %d minute %d seconde \n",Save_s,h,m,s);
+				}
+				else
+				{
+					printf("\n %d secondes corespond a %d heure %d minute %d secondes \n",Save_s,h,m,s);
+				}
+			}
+			else
+			{
+				if(s == 0 || m == 1)
+				{
+					printf("\n %d secondes corespond a %d heure %d minutes %d seconde \n",Save_s,h,m,s);
+				}
+				else
+				{
+					printf("\n %d secondes corespond a %d heure %d minutes %d secondes \n",Save_s,h,m,s);
+				}
+			}
+		}
+		else
+		{
+			if(m == 0 || m == 1)
+			{
+				if(s == 0 || m == 1)
+				{
+					printf("\n %d secondes corespond a %d heures %d minute %d seconde \n",Save_s,h,m,s);
+				}
+				else
+				{
+					printf("\n %d secondes corespond a %d heures %d minute %d secondes \n",Save_s,h,m,s);
+				}
+			}
+			else
+			{
+				if(s == 0 || m == 1)
+				{
+					printf("\n %d secondes corespond a %d heures %d minutes %d seconde \n",Save_s,h,m,s);
+				}
+				else
+				{
+					printf("\n %d secondes corespond a %d heures %d minutes %d secondes \n",Save_s,h,m,s);
+				}
+			}
+		}
 	}
+	
 	return 0;
 }
