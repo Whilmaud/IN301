@@ -7,15 +7,16 @@
 
 int main()
 {
-	printf("        *\n");
-	printf("       * \n");
-	printf("      *  \n");
-	printf("     *   \n");
-	printf("    *    \n");
-	printf("   *     \n");
-	printf("  *      \n");
-	printf(" *       \n");
-	printf("*        \n");
+	int i ,y;
 	
+	for(i = 0;i<10;i++)
+	{
+		for(y = 0;y < 9-i;y++)
+		{
+			printf(" ");
+		}
+		printf("*");
+		printf("\n");
+	}
 	return 0;
 }
