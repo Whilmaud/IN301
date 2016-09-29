@@ -2,6 +2,24 @@
 #include <stdlib.h>
 #include <time.h>
 
+void ALL_AMI(int CenturyBoy)
+{
+	int Century ,Boy, res;
+	
+	for(Century = 0; Century < CenturyBoy+1;Century++)
+	{
+		for(Boy = 0; Boy < Century+1;Boy++)
+		{
+			res = 0;
+			res = AMI(Century,Boy);
+			if(res)
+			{
+				printf("%d et %d sont amis\n",Century, Boy);
+			}
+		}
+	}
+}
+
 int AMI(int Century,int Boy)
 {
 	int i,Somme;
@@ -45,23 +63,9 @@ int AMI(int Century,int Boy)
 }
 int main()
 {
-	int Century ,Boy ,res;
+	int CenturyBoy = 285;
 	
-	Century = 220;
-	Boy = 284;
-	
-	res = AMI(Century,Boy);
-	
-	if(res)
-	{
-		printf("%d et %d sont amis\n",Century, Boy);
-	}
-	else
-	{
-		printf("%d et %d ne sont pas amis\n",Century, Boy);
-	}
-	
-	return 0;
+	ALL_AMI(CenturyBoy);
 	
 	return 0;
 }	
