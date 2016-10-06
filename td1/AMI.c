@@ -2,51 +2,18 @@
 #include <stdlib.h>
 #include <time.h>
 
-void ALL_AMI(int CenturyBoy)
-{
-	int Century ,Boy, res;
-	
-	for(Century = 0; Century < CenturyBoy+1;Century++)
-	{
-		for(Boy = 0; Boy < Century+1;Boy++)
-		{
-			res = 0;
-			res = AMI(Century,Boy);
-			if(res)
-			{
-				printf("%d et %d sont amis\n",Century, Boy);
-			}
-		}
-	}
-}
-
 int AMI(int Century,int Boy)
 {
 	int i,Somme;
 	Somme = 0;
 	i = 1;
-	while(i < Century)
-	{
-		
-		if(Century%i == 0)
-		{
-			Somme += i;
-		}
-		i = i+1;
-	}
+
+	Somme = calcul_somme_diviseur(Century);
+	
 	if(Somme == Boy)
-	{
-		i = 1;
-		Somme = 0;
-		while(i < Boy)
-		{
+	{	
+		Somme = calcul_somme_diviseur(Boy);
 		
-			if(Boy%i == 0)
-			{
-				Somme += i;
-			}
-			i = i+1;
-		}
 		if(Somme == Century)
 		{
 			return 1;
@@ -61,9 +28,57 @@ int AMI(int Century,int Boy)
 		return 0;
 	}
 }
+
+int AMIbis(int Century,int Boy)
+{
+	int i,Somme;	
+	Somme = calcul_somme_diviseur(Boy);
+		
+	if(Somme == Century)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int calcul_somme_diviseur(int n)
+{
+	int i,Somme;
+	i = 1;
+	Somme = 0;
+	while(i < n)
+	{
+		if(n%i == 0)
+		{
+			Somme += i;
+		}
+		i = i+1;
+	}
+	
+	return Somme;
+}
+
+void ALL_AMI(int CenturyBoy)
+{
+	int Century ,Boy, res;
+	
+	for(Century = 0; Century < CenturyBoy+1;Century++)
+	{
+		Boy = calcul_somme_diviseur(Century);
+		res = AMIbis(Century,Boy);
+		if(res)
+		{
+			printf("%d et %d sont amis\n",Century, Boy);
+		}
+	}
+}
+
 int main()
 {
-	int CenturyBoy = 285;
+	int CenturyBoy = 100000;
 	
 	ALL_AMI(CenturyBoy);
 	
