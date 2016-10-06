@@ -30,7 +30,7 @@ int main()
 {
 	int n,i,o;
 	
-	n = 30;
+	n = 41;
 	
 	for(i = 1;i<n+1;i++)
 	{
