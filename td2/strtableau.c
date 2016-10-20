@@ -91,7 +91,7 @@ void decal_tableau(TABLEAU *T)
 	(*T).tab[0] = 0;
 }
 
-void tris_tableau(TABLEAU *T)
+void tris_tableau_bulle(TABLEAU *T)
 {
 	int i,j;
 	
@@ -150,6 +150,25 @@ void suppr_alea_tableau(TABLEAU *T)
 	(*T).taille--;
 }
 
+void suppr_double_str_tableau(TABLEAU *T)
+{
+	int j,i;
+	
+	for(i = 0;i < (*T).taille;i++)
+	{
+		for(j = i+1;j < (*T).taille;j++)
+		{
+			if((*T).tab[j] == (*T).tab[i])
+			{
+				(*T).taille--;
+				inverse(&((*T).tab[j]),&((*T).tab[(*T).taille]));
+				j--;
+			}
+		}
+	}
+
+}
+
 /*int mr()
 {
 	static int first = 0;
@@ -183,7 +202,7 @@ int main()
 	//affiche_tableau(&T);
 	
 	printf("post tris\n");
-	tris_tableau(&T);
+	tris_tableau_bulle(&T);
 	//affiche_tableau(&T);
 	
 	printf("post insere\n");
@@ -195,7 +214,10 @@ int main()
 	affiche_tableau(&T);
 	
 	printf("post suppr_alea\n");
-	suppr_alea_tableau(&T);
+	//suppr_alea_tableau(&T);
+	//affiche_tableau(&T);
+	
+	suppr_double_str_tableau(&T);
 	affiche_tableau(&T);
 	
 	return 0;
