@@ -80,6 +80,22 @@ int minim_tableau(TABLEAU *T)
 	return min;
 }
 
+int pos_minim_tableau(TABLEAU *T)
+{
+	int i,pmin;
+	
+	pmin = 0;
+	
+	for(i = 1;i<(*T).taille;i++)
+	{
+		if((*T).tab[pmin] > (*T).tab[i])
+		{
+			pmin = i;
+		}
+	}
+	return pmin;
+}
+
 void decal_tableau(TABLEAU *T)
 {
 	int i;
@@ -89,6 +105,29 @@ void decal_tableau(TABLEAU *T)
 		(*T).tab[i] = (*T).tab[i-1];
 	}
 	(*T).tab[0] = 0;
+}
+
+void insere_tableau_tris(int n,TABLEAU *T)
+{
+	int i,j;
+	
+	i = 0;
+	
+	while(n > (*T).tab[i])
+	{
+		i++;
+	}
+	printf("%d\n",i);
+
+	
+
+	for(j = (*T).taille;j != i;j--)
+	{
+		(*T).tab[j] = (*T).tab[j-1];
+	}
+	(*T).taille++;
+	(*T).tab[i] = n;
+	
 }
 
 void tris_tableau_bulle(TABLEAU *T)
@@ -107,25 +146,34 @@ void tris_tableau_bulle(TABLEAU *T)
 	}
 }
 
-void insere_tableau_tris(int n,TABLEAU *T)
+void tris_tableau_insertion(TABLEAU *T)
 {
-	int i,j;
+	int sT;
 	
-	i = 0;
+	sT = (*T).taille;
+	(*T).taille = 1;
 	
-	while(n > (*T).tab[i])
+	while((*T).taille != sT)
 	{
-		i++;
+		insere_tableau_tris((*T).tab[(*T).taille],&(*T));
 	}
 
-	(*T).taille++;
-	for(j = (*T).taille;j > i;j--)
-	{
-		(*T).tab[j] = (*T).tab[j-1];
-	}
-	(*T).tab[i] = n;
-	
 }
+
+void tris_tableau_selection(TABLEAU *T)
+{
+	TABLEAU T2;
+	int i,pmin;
+	
+	for(i = 0;i < (*T).taille;i++)
+	{
+		T2.taille = (*T).taille-i;
+		T2.tab = ((*T).(tab+1));
+		pmin = i + pos_minim_tableau(&T2);
+		inverse(&((*T).tab[i]),&((*T).tab[pmin]));
+	}
+}
+
 void inverse_tableau(TABLEAU *T)
 {
 	int i;
@@ -150,7 +198,7 @@ void suppr_alea_tableau(TABLEAU *T)
 	(*T).taille--;
 }
 
-void suppr_double_str_tableau(TABLEAU *T)
+void suppr_double_str_tableau(TABLEAU *T) // a refaire ?
 {
 	int j,i;
 	
@@ -189,9 +237,9 @@ int main()
 	
 	init_tableau(&T);
 	
-	printf("%d\n",T.taille);
+	//printf("%d\n",T.taille);
 	
-	//affiche_tableau(&T);
+	affiche_tableau(&T);
 	
 	//printf("%ld\n",produit_tableau(&T));
 	//printf("%d\n",minim_tableau(&T));
@@ -202,7 +250,7 @@ int main()
 	//affiche_tableau(&T);
 	
 	printf("post tris\n");
-	tris_tableau_bulle(&T);
+	tris_tableau_insertion(&T);
 	//affiche_tableau(&T);
 	
 	printf("post insere\n");
@@ -210,14 +258,14 @@ int main()
 	//affiche_tableau(&T);
 	
 	printf("post inverse\n");
-	inverse_tableau(&T);
-	affiche_tableau(&T);
+	//inverse_tableau(&T);
+	//affiche_tableau(&T);
 	
 	printf("post suppr_alea\n");
 	//suppr_alea_tableau(&T);
 	//affiche_tableau(&T);
 	
-	suppr_double_str_tableau(&T);
+	//suppr_double_str_tableau(&T);
 	affiche_tableau(&T);
 	
 	return 0;
